@@ -51,5 +51,21 @@
   transform: translate3d(0, 0, 0) scale(0.95);
   filter: blur(20px);
 }
+    #cont p:not(.heading) {
+  font-size: 14px;
+}
+
+#cont p:last-child {
+  color: #e81cff;
+  font-weight: 600;
+}
+
+#cont:hover::after {
+  filter: blur(30px);
+}
+
+#cont:hover::before {
+  transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+}
   </style>
 </html>
