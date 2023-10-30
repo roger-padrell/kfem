@@ -1,0 +1,36 @@
+<html>
+  <script>
+    var db = {}
+    function main(){
+      let req = new XMLHttpRequest();
+
+      req.onreadystatechange = () => {
+        if (req.readyState == XMLHttpRequest.DONE) {
+          signIn(JSON.parse(req.responseText));
+        }
+      };
+      
+      req.open("GET", "https://api.jsonbin.io/v3/b/653fc3f654105e766fc91994/?meta=false", true);
+      req.setRequestHeader("X-Master-Key", "$2b$10$i3qJgSD.qkNJRnyjAWq0ZePymTTWgzaBSJzm2nEJn4KpSb6S3/T7K");
+      req.send();
+    }
+
+    function signIn(data){
+      db = data;
+      var usr = prompt("Usuari");
+      var pass = prompt("Contrasenya");
+
+      if(data.users.includes(usr)){
+        if(data.users[usr].pass = pass){
+          localStorage.usr = usr;
+        }
+        else{
+          alert("Conttasenya incorrecta")
+        }
+      }
+      else{
+        alert("Aquest usuari no existeix")
+      }
+    }
+  </script>
+</html>
