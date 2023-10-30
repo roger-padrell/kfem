@@ -19,7 +19,28 @@
         function load(data){
             db = data;
             if(db.users[usr].plans && db.users[usr].plans.length != 0){
-                
+                var uplans = []
+                for(p in db.users[usr].plans){
+                	uplans.push(db.plans[db.users[usr].plans[p]])
+                }
+
+                for(pl in uplans){
+                    var pla = uplans[pl];
+                    //creating container
+                    var cont = document.createElement('div')
+                    cont.classList.add('pcont')
+                    cont.id = pl;
+                    cont.onclick = function(){window.location.href = "./details?" + this.id}
+
+                    //creating the title
+                    var title = document.createElement('h2')
+                    title.innerHTML = pla.title;
+                    title.classList.add('ptitle')
+
+                    //appending
+                    cont.appendChild(title)
+                    document.body.appendChild(cont)
+                }
             }
             else{
                 alert("No tens cap plà actualment")
