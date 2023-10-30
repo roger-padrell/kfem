@@ -1,0 +1,29 @@
+<html>
+    <script>
+        var usr = localStorage.usr;
+
+        var db = {};
+
+        let req = new XMLHttpRequest();
+
+        req.onreadystatechange = () => {
+            if (req.readyState == XMLHttpRequest.DONE) {
+                load(JSON.parse(req.responseText));
+            }
+        };
+        
+        req.open("GET", "https://api.jsonbin.io/v3/b/653fc3f654105e766fc91994/?meta=false", true);
+        req.setRequestHeader("X-Master-Key", "$2b$10$i3qJgSD.qkNJRnyjAWq0ZePymTTWgzaBSJzm2nEJn4KpSb6S3/T7K");
+        req.send();
+
+        function load(data){
+            db = data;
+            if(db.users[usr].plans && db.users[usr].plans.length != 0){
+                
+            }
+            else{
+                alert("No tens cap plà actualment")
+            }
+        }
+    </script>
+</html>
