@@ -32,5 +32,34 @@
         alert("Aquest usuari no existeix")
       }
     }
+
+    function signUp(){
+	var usr = prompt("Nou usuari")
+	var pass = prompt("Nova contrasenya")
+	
+	if(localStorage.usr){
+		alert("Només pots tenir un usuari per dispositiu")
+	}
+	else if(db.users[usr]){
+		alert("Aquest usuari ja existeix")
+	}
+	else{
+		db.users[usr] = {};
+		db.users[usr].pass = pass;
+
+		let req = new XMLHttpRequest();
+
+		req.onreadystatechange = () => {
+		  if (req.readyState == XMLHttpRequest.DONE) {
+		    alert("Usuari creat i sessió iniciada");
+		  }
+		};
+		
+		req.open("PUT", "https://api.jsonbin.io/v3/b/653fc3f654105e766fc91994", true);
+		req.setRequestHeader("Content-Type", "application/json");
+		req.setRequestHeader("X-Master-Key", "$2b$10$i3qJgSD.qkNJRnyjAWq0ZePymTTWgzaBSJzm2nEJn4KpSb6S3/T7K");
+		req.send(JSON.stringify(db));
+	}
+}
   </script>
 </html>
